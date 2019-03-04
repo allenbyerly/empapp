@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
 
   Company.associate = (models) => {
     Company.hasMany(models.Employee, {
-      foreignKey: 'employeeId',
+      foreignKey: 'companyId',
       as: 'employees',
     });
   };
