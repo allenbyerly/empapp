@@ -74,52 +74,7 @@ module.exports = {
                 raw: true,
             })
             .then(employees =>
-            {/*
-                var arry = [{ "Id": "1", "Name": "abc", "Parent": "", "attr": "abc" },
-                    { "Id": "2", "Name": "abc", "Parent": "1", "attr": "abc" },
-                    { "Id": "3", "Name": "abc", "Parent": "2", "attr": "abc" },
-                    { "Id": "4", "Name": "abc", "Parent": "2", "attr": "abc" }];
-                arry = employees;
-
-                function convert(array){
-                    try {
-                        var map = {};
-                        for(var i = 0; i < array.length; i++){
-
-                            var obj = array[i];
-                            obj.items= [];
-
-
-                            map[obj.id] = obj;
-
-
-                            console.log(obj.supervisor);
-                            var parent = obj.supervisor || '-';
-                            if(!map[parent]){
-                                map[parent] = {
-                                    items: []
-                                };
-                            }
-                            map[parent].items.push(obj);
-
-                        }
-
-                        return map['-'].items;
-                    }
-                    catch(error) {
-                        console.log(error);
-                    }
-
-                }
-                function getEmp(emp) {
-                    console.log(emp);
-                    return emp.id == req.params.employeeId;
-                }
-                var r = convert(arry);
-                console.log(req.body.params);
-                var emp = arry.find(getEmp);
-                res.status(200).send(emp);
-                */
+            {
 
                     var map = {};
                     for(var i = 0; i < employees.length; i++){

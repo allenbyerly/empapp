@@ -61,3 +61,36 @@ The service should be accessible at
 http//localhost:8000/api/
 ```
 
+##Using the API
+
+- Create a Company: 
+
+HTTP POST /api/companies with parameters = { name }
+
+- List All Companies (the list includes all the employees (and their details) for each company): 
+
+HTTP GET  /api/companies
+
+- Gets a specific company (this includes all the employees (and their details) for the company): 
+
+HTTP GET  /api/companies/{companyId}
+ 
+ - Gets all the employees (and their details) for the company.  Details include an enumerated list of the supervisor hierarchy for each employee.
+ 
+HTTP GET  /api/companies/{companyId}/employees
+ 
+ - Create an employee
+ 
+HTTP POST  /api/companies/{companyId}/employees with parameters = {name, title, supervisor is optional}
+
+ - Modify an employee (change status to "Terminated", change title, change name, and change supervisor are available)
+  
+HTTP PUT  /api/companies/{companyId}/employees/{employeeId} with parameters = {name, title, supervisor, status}
+
+ - Gets the details for a specific employee.  Details include an enumerated list of the supervisor hierarchy for each employee.
+   
+HTTP GET  /api/companies/{companyId}/employees/{employeeId}
+ 
+ - Gets all job titles (history) that an employee has had at a company.
+    
+HTTP GET  /api/companies/{companyId}/employees/{employeeId}/titles
