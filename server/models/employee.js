@@ -11,9 +11,13 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       defaultValue: "Active",
     },
-  }, {});
+  });
   Employee.associate = function(models) {
     // associations can be defined here
+    Employee.belongsTo(models.Company, {
+      foreignKey: 'companyId',
+      onDelete: 'CASCADE',
+    });
   };
   return Employee;
 };

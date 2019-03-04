@@ -6,16 +6,18 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      name: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER,
       },
       title: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING,
+      },
+      name: {
+        type: Sequelize.STRING,
+        allowNull: false
       },
       supervisor: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       status: {
         type: Sequelize.STRING
@@ -26,11 +28,11 @@ module.exports = {
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       }
     });
   },
-  down: (queryInterface, Sequelize) => {
+  down: (queryInterface/*, Sequelize*/) => {
     return queryInterface.dropTable('Employees');
   }
 };

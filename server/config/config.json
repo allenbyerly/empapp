@@ -2,7 +2,7 @@
   "development": {
     "username": "postgres",
     "password": "postgres",
-    "database": "empapp_dev",
+    "database": "empapp-dev",
     "host": "127.0.0.1",
     "port": 5432,
     "dialect": "postgres"
@@ -16,7 +16,7 @@
     "dialect": "postgres"
   },
   "production": {
-    "username":  "username": "postgres",
+    "username": "postgres",
     "password": "postgres",
     "database": "empapp_prod",
     "host": "127.0.0.1",
