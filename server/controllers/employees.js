@@ -33,9 +33,6 @@ module.exports = {
                     emp.supervisors = [emp.supervisor];
                     map[employees[i].id] = emp;
                 }
-
-
-
                 for(var i = 0; i < employees.length; i++){
                     try {
                         var emp = employees[i];
