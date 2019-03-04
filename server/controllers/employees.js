@@ -6,7 +6,8 @@ module.exports = {
             .create({
                 name: req.body.name,
                 title: req.body.title,
-               companyId: req.params.companyId
+                supervisor: req.body.supervisor,
+                companyId: req.params.companyId
             })
             .then(employee => res.status(201).send(employee))
             .catch(error => res.status(400).send(error));
