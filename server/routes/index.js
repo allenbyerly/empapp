@@ -13,7 +13,8 @@ module.exports = (app) => {
     app.get('/api/companies/:companyId', companiesController.retrieve);
     app.put('/api/companies/:companyId', companiesController.update);
 
-    app.get('/api/employees', employeesController.list);
+    app.get('/api/companies/:companyId/employees', employeesController.list);
+    app.get('/api/companies/:companyId/employees/:employeeId', employeesController.retrieve);
     app.post('/api/companies/:companyId/employees', employeesController.create);
     app.put('/api/companies/:companyId/employees/:employeeId', employeesController.update);
 };

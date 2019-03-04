@@ -4,6 +4,9 @@ module.exports = {
     // Add a new employee to the system.  Required Params are name and title.
     // An employee defaults to no supervisor and has a status of active
     // Employee status can be anything but expected values are "Active" or "Terminated"
+    beforeCreate(req, res) {
+
+    },
     create(req, res) {
         return Employee
             .create({
@@ -18,8 +21,147 @@ module.exports = {
     },
     list(req, res) {
         return Employee
-            .all()
-            .then(employees => res.status(200).send(employees))
+            .all({
+                raw: true,
+            })
+            .then(employees =>
+            {
+                var map = {};
+                for(var i = 0; i < employees.length; i++){
+
+                    var emp = employees[i];
+                    emp.supervisors = [emp.supervisor];
+                    map[employees[i].id] = emp;
+                }
+
+
+
+                for(var i = 0; i < employees.length; i++){
+                    try {
+                        var emp = employees[i];
+                        var sup = map[emp.supervisor].supervisor;
+                        while (map[sup]) {
+                            console.log(map[sup]);
+                            emp.supervisors.push(sup);
+                            sup = map[sup].supervisor;
+                            console.log(emp);
+
+                        }
+                        // console.log(emp);
+                    } catch (error){}
+                }
+                // var r = convert(arry);
+
+                // var emp = arry.find(findEmployee);
+                function getEmployee(employee) {
+                    return employee.id == req.params.employeeId;
+                }
+                console.log(map)
+                var emp = employees.find(function(element) {
+                    console.log(element.id);
+                    return element.id == req.params.employeeId;
+
+                });
+
+                console.log(req.params.employeeId);
+                res.status(200).send(employees);
+            })
+            .catch(error => res.status(400).send(error));
+    },
+    retrieve(req, res) {
+        return Employee
+            .all({
+                raw: true,
+            })
+            .then(employees =>
+            {/*
+                var arry = [{ "Id": "1", "Name": "abc", "Parent": "", "attr": "abc" },
+                    { "Id": "2", "Name": "abc", "Parent": "1", "attr": "abc" },
+                    { "Id": "3", "Name": "abc", "Parent": "2", "attr": "abc" },
+                    { "Id": "4", "Name": "abc", "Parent": "2", "attr": "abc" }];
+                arry = employees;
+
+                function convert(array){
+                    try {
+                        var map = {};
+                        for(var i = 0; i < array.length; i++){
+
+                            var obj = array[i];
+                            obj.items= [];
+
+
+                            map[obj.id] = obj;
+
+
+                            console.log(obj.supervisor);
+                            var parent = obj.supervisor || '-';
+                            if(!map[parent]){
+                                map[parent] = {
+                                    items: []
+                                };
+                            }
+                            map[parent].items.push(obj);
+
+                        }
+
+                        return map['-'].items;
+                    }
+                    catch(error) {
+                        console.log(error);
+                    }
+
+                }
+                function getEmp(emp) {
+                    console.log(emp);
+                    return emp.id == req.params.employeeId;
+                }
+                var r = convert(arry);
+                console.log(req.body.params);
+                var emp = arry.find(getEmp);
+                res.status(200).send(emp);
+                */
+
+                    var map = {};
+                    for(var i = 0; i < employees.length; i++){
+
+                        var emp = employees[i];
+                        emp.supervisors = [emp.supervisor];
+                        map[employees[i].id] = emp;
+                    }
+
+
+
+                    for(var i = 0; i < employees.length; i++){
+                        try {
+                            var emp = employees[i];
+                            var sup = map[emp.supervisor].supervisor;
+                            while (map[sup]) {
+                                console.log(map[sup]);
+                                emp.supervisors.push(sup);
+                                sup = map[sup].supervisor;
+                                console.log(emp);
+
+                            }
+                           // console.log(emp);
+                        } catch (error){}
+                    }
+                    // var r = convert(arry);
+
+                    // var emp = arry.find(findEmployee);
+                    function getEmployee(employee) {
+                        return employee.id == req.params.employeeId;
+                    }
+                console.log(map)
+                    var emp = employees.find(function(element) {
+                        console.log(element.id);
+                        return element.id == req.params.employeeId;
+
+                    });
+
+                    console.log(req.params.employeeId);
+                    res.status(200).send(emp);
+                })
+
             .catch(error => res.status(400).send(error));
     },
     update(req, res) {

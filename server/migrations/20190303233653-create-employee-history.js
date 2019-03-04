@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Employees', {
+    return queryInterface.createTable('EmployeeHistorys', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -17,7 +17,7 @@ module.exports = {
         allowNull: false
       },
       supervisor: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
       },
       status: {
         type: Sequelize.STRING
@@ -30,18 +30,18 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
-      companyId: {
+      employeeId: {
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
         references: {
-          model: 'Companies',
+          model: 'Employees',
           key: 'id',
-          as: 'companyId',
+          as: 'employeeId',
         },
       },
     });
   },
   down: (queryInterface/*, Sequelize*/) => {
-    return queryInterface.dropTable('Employees');
+    return queryInterface.dropTable('EmployeeHistorys');
   }
 };
