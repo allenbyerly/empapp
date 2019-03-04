@@ -3,6 +3,7 @@ const Company = require('../models').Company;
 module.exports = {
     create(req, res) {
         return Company
+            //create a company requires a name
             .create({
                 name: req.body.name,
             })

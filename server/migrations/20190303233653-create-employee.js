@@ -29,7 +29,16 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
-      }
+      },
+      //added relationship with contraints so that a company must exist for an employeee to be created and if the company is deleted the employee will be deleted
+      companyId: {
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'Companies',
+          key: 'id',
+          as: 'companyId',
+        },
     });
   },
   down: (queryInterface/*, Sequelize*/) => {

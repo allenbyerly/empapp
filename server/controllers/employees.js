@@ -4,9 +4,9 @@ module.exports = {
     create(req, res) {
         return Employee
             .create({
-                title: req.body.title,
+                name: req.body.name,
             })
-            .then(todo => res.status(201).send(todo))
+            .then(employee => res.status(201).send(employee))
             .catch(error => res.status(400).send(error));
     },
 };
