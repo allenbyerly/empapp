@@ -11,10 +11,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             defaultValue: "Active",
         },
-        startdate: {
-            type: DataTypes.DATE,
-            defaultValue: Date().toString(),
-        },
+       // startdate: {
+       //     type: DataTypes.DATE,
+       //     defaultValue: Date().toString(),
+       // },
 
     });
     EmployeeHistory.associate = function(models) {

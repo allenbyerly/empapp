@@ -1,6 +1,7 @@
 const todosController = require('../controllers').todos;
 const companiesController = require('../controllers').companies;
 const employeesController = require('../controllers').employees;
+const employeeHistorysController = require('../controllers').employeeHistorys;
 
 module.exports = (app) => {
     app.get('/api', (req, res) => res.status(200).send({
@@ -17,4 +18,6 @@ module.exports = (app) => {
     app.get('/api/companies/:companyId/employees/:employeeId', employeesController.retrieve);
     app.post('/api/companies/:companyId/employees', employeesController.create);
     app.put('/api/companies/:companyId/employees/:employeeId', employeesController.update);
+
+    app.get('/api/companies/:companyId/employees/:employeeId/titles', employeeHistorysController.list);
 };
