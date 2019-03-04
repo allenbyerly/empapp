@@ -10,6 +10,10 @@ module.exports = (app) => {
     app.post('/api/todos', todosController.create);
     app.post('/api/companies', companiesController.create);
     app.get('/api/companies', companiesController.list);
-    app.post('/api/companies/:companyId/employees', employeesController.create);
+    app.get('/api/companies/:companyId', companiesController.retrieve);
+    app.put('/api/companies/:companyId', companiesController.update);
+
     app.get('/api/employees', employeesController.list);
+    app.post('/api/companies/:companyId/employees', employeesController.create);
+    app.put('/api/companies/:companyId/employees/:employeeId', employeesController.update);
 };
