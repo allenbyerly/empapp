@@ -184,6 +184,7 @@ module.exports = {
                         supervisor: req.body.supervisor || employee.supervisor,
                         title: req.body.title || employee.title,
                         status: req.body.status || employee.status,
+                        name: req.body.name  || employee.name,
                     })
                     .then(updatedEmployee => res.status(200).send(updatedEmployee))
                     .catch(error => res.status(400).send(error));
